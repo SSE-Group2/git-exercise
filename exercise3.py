@@ -28,13 +28,15 @@ class Rectangle:
     def in_interval(self, value: float, min: float, max: float) -> bool:
         return value >= min and value <= max
 
-    def contains(self, point: Point2D) -> bool:
+    def contains(self, point: Point2D, tolerance=0) -> bool:
         # Task A: remove duplication by defining a function
         #         that checks if a value is within an interval
         #         and reuse that here.
         ll_px = point.x - self._lower_left.x
         ll_py = point.y - self._lower_left.y
-        return self.in_interval(ll_px, min=0, max=self._dx) and self.in_interval(ll_py, min=0, max=self._dy)
+
+        return self.in_interval(ll_px, min=-tolerance, max=self._dx + tolerance) and self.in_interval(ll_py, min=-tolerance, max=self._dy + tolerance)
+
 
     def _is_idx_on_upper_edge(self, i: int) -> bool:
         return i in [2, 3]
