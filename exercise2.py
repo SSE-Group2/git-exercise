@@ -19,6 +19,12 @@ class Point2D:
         y = self._coordinates[1] - target[1]
         return Point2D(x, y)
 
+    def __iadd__(self,target:Vector)->Point2D:
+        x= self._coordinates[0]+ target[0]
+        y= self._coordinates[1]+ target[1]
+        return Point2D(x,y)
+
+
 
 def test_point_construction() -> None:
     point = Point2D(1.0, 42.0)
